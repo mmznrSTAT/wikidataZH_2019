@@ -32,6 +32,6 @@ WHERE {
   FILTER (?Date = "2019-01-01"^^xsd:date) .
   FILTER (?bfsNumber = "1"^^xsd:integer) .
 }
-```
+``
 
 
