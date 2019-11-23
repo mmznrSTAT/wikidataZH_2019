@@ -14,7 +14,8 @@ Get Data as csv from Canton of Zurich via API
 https://www.web.statistik.zh.ch:8443/gp/GP?type=EXPORT&indikatoren=133&raumtyp=1&text=yes
 
 SPARQL Query to get Municipalities of the Canton Of Zurich from swiss topo endpoint
-'''
+
+```
 PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX gn: <http://www.geonames.org/ontology#>
@@ -31,6 +32,6 @@ WHERE {
   FILTER (?Date = "2019-01-01"^^xsd:date) .
   FILTER (?bfsNumber = "1"^^xsd:integer) .
 }
-'''
+```
 
 
