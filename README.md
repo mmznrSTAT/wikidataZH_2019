@@ -10,6 +10,8 @@ Team: Katharina Kaelin, Roman Karavia, Sebastian Windeck, Philipp Rütimann, Mat
 
 ![Kanban](https://github.com/mmznrSTAT/wikidataZH_2019/blob/master/images/kanban.jpg "Kanban")
 
+Project Update as Jupyter Notebook Documentation: https://github.com/mmznrSTAT/wikidataZH_2019/blob/master/ProjectUpdate.ipynb
+
 ## Data Sources
 
 ### Population of Municipalities in the Canton of Zurich 
