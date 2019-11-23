@@ -7,7 +7,7 @@ from SPARQLWrapper import SPARQLWrapper, JSON, XML
 import logging
 
 
-def import_wikidata():
+def import_wikidata_kt():
     """
     Generates a SPARQL query and converts this data to pandas datadframe
     :return: pd.Dataframe['wikidata_id','date','population','qualifier']
@@ -58,7 +58,7 @@ def import_wikidata():
     return pop
 
 
-def import_kanton():
+def import_kantonZH_api():
     URL = "https://www.web.statistik.zh.ch:8443/gp/GP?type=EXPORT&indikatoren=133&raumtyp=1&export=csv"
 
     r = requests.get(url=URL)
@@ -84,47 +84,51 @@ def import_kanton():
     return df
 
 
-endpoint_url = "https://ld.geo.admin.ch/query"
+def import_geoadmin_wikidata_kt():
+    """
+    Validation of BFS number: Checks which BFS numbers are active between geo.admin and wikidata
+    :return:
+    """
+    endpoint_url = "https://ld.geo.admin.ch/query"
 
-query = """
-PREFIX schema: <http://schema.org/>
-PREFIX gn: <http://www.geonames.org/ontology#>
-PREFIX wdt: <http://www.wikidata.org/prop/direct/>
-PREFIX wd: <http://www.wikidata.org/entity/>
-PREFIX wikibase: <http://wikiba.se/ontology#>
-PREFIX geo: <http://www.opengis.net/ont/geosparql#>
-PREFIX dct: <http://purl.org/dc/terms/>
-PREFIX st: <https://ld.geo.admin.ch/def/>
+    query = """
+    PREFIX schema: <http://schema.org/>
+    PREFIX gn: <http://www.geonames.org/ontology#>
+    PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+    PREFIX wd: <http://www.wikidata.org/entity/>
+    PREFIX wikibase: <http://wikiba.se/ontology#>
+    PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+    PREFIX dct: <http://purl.org/dc/terms/>
+    PREFIX st: <https://ld.geo.admin.ch/def/>
 
-select ?Municipality ?Name ?Population ?bfs ?date ?wikidata_id
-where{
-?Municipality gn:featureCode gn:A.ADM3 .
-?Municipality schema:name ?Name .
-?Municipality gn:population?Population .
-?Municipality st:bfsNumber ?bfs .
-?Municipality dct:issued ?date .
-?Municipality gn:parentADM1 ?InCanton .
-?InCanton schema:name ?CantonName .
-#?Municipality geo:hasGeometry ?Geometry .
-#?Geometry geo:asWKT ?WKT .
+    select ?Municipality ?Name ?Population ?bfs ?date ?wikidata_id
+    where{
+    ?Municipality gn:featureCode gn:A.ADM3 .
+    ?Municipality schema:name ?Name .
+    ?Municipality gn:population?Population .
+    ?Municipality st:bfsNumber ?bfs .
+    ?Municipality dct:issued ?date .
+    ?Municipality gn:parentADM1 ?InCanton .
+    ?InCanton schema:name ?CantonName .
+    #?Municipality geo:hasGeometry ?Geometry .
+    #?Geometry geo:asWKT ?WKT .
 
-#FILTER (?date = '2019-01-01'^^xsd:date)
-FILTER (?CantonName = 'Zürich')
+    #FILTER (?date = '2019-01-01'^^xsd:date)
+    FILTER (?CantonName = 'Zürich')
 
-{SELECT DISTINCT (xsd:integer(?bfsWD) AS ?bfs)?wikidata_id ?Image WHERE {
-SERVICE <https://query.wikidata.org/bigdata/namespace/wdq/sparql>
+    {SELECT DISTINCT (xsd:integer(?bfsWD) AS ?bfs)?wikidata_id ?Image WHERE {
+    SERVICE <https://query.wikidata.org/bigdata/namespace/wdq/sparql>
 
-{
-?wikidata_id wdt:P771 ?bfsWD .
-?wikidata_id wdt:P31 wd:Q70208 .
-#OPTIONAL { ?wikidata_id wdt:P18 ?Image. } .
-}
-}
-}
-}
-"""
+    {
+    ?wikidata_id wdt:P771 ?bfsWD .
+    ?wikidata_id wdt:P31 wd:Q70208 .
+    #OPTIONAL { ?wikidata_id wdt:P18 ?Image. } .
+    }
+    }
+    }
+    }
+    """
 
-def import_kanton_wiki():
     def get_results(endpoint_url, query):
         sparql = SPARQLWrapper(endpoint_url,
                                agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.75 Safari/537.36")
@@ -132,7 +136,7 @@ def import_kanton_wiki():
         sparql.setReturnFormat(JSON)
         return sparql.query().convert()
 
-    results = get_results((endpoint_url, query))
+    results = get_results(endpoint_url, query)
     result = results["results"]["bindings"]
 
     population = []
@@ -146,13 +150,14 @@ def import_kanton_wiki():
         population.append(mon)
 
     pop = pd.DataFrame(population)
-    pop.head
+
+    return pop
 
 _population_resource_id = "570f006e-2f2a-4b1f-9233-c4916c753475"
 _mapping_resource_id = "0090f2ed-1df9-4953-9561-5d413fd74758"
 
 
-def import_city_zh():
+def import_cityZH_api():
     def _query_opendata_zurich(resource_id, parse_record):
         result = requests.get(f"https://data.stadt-zuerich.ch/api/3/action/datastore_search?resource_id={resource_id}")
         records = result.json()["result"]["records"]
@@ -179,15 +184,19 @@ def import_city_zh():
     return pd.DataFrame(population_rows)
 
 
-
 def main():
-    data_frame = import_city_zh().head()
+    # Database request of city/kanton level
+    data_frame = import_cityZH_api().head()
     print("City of Zurich")
     print(data_frame)
-    data_frame = import_kanton().head()
+    data_frame = import_kantonZH_api().head()
     print("Kanton data")
     print(data_frame)
-    data_frame = import_wikidata().head()
+    # Network requests
+    data_frame = import_geoadmin_wikidata_kt().head()
+    print("Kanton geo.admin.data")
+    print(data_frame)
+    data_frame = import_wikidata_kt().head()
     print("Wikidata for Kanton")
     print(data_frame)
 
