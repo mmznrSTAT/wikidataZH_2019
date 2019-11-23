@@ -53,6 +53,7 @@ def import_wikidata():
 
     pop = pd.DataFrame(population)
     pop['date'] = pop.date.str.slice(0, 10)
+    pop['bfs_id'] = pop['bfs_id'].astype(int)
     logging.info('Import Wikidata: extracted {0} entries successful'.format(pop['date'].count()))
     return pop
 
