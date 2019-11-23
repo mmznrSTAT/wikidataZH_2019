@@ -54,14 +54,14 @@ for p in result:
     'Municipality':p['Municipality']['value'],
     'Name':p['Name']['value'],
     'Population':p['Population']['value'],
-    'bfs':p['bfs']['value'], 
-    'date':p['date']['value'], 
-    'wikidata_id':p['wikidata_id']['value'],   
+    'bfs':p['bfs']['value'],
+    'date':p['date']['value'],
+    'wikidata_id':p['wikidata_id']['value'],
     'wikidata_id': p['wikidata_id']['value'].replace('http://www.wikidata.org/entity/', '')#,
      #'date': p['date']['value'],
     }
     population.append(mon)
-    
-    
+
+
 pop = pd.DataFrame(population)
 pop.head
