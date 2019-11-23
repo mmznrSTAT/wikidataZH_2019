@@ -4,9 +4,9 @@ We combine challenge 4 and 6. Our goal is to update the population of in wikidat
 
 Team: Katharina Kaelin, Roman Karavia, Sebastian Windeck, Philipp Rütimann, Matthias Mazenauer, Michael Grüebler
 
-## Data Source
+## Data Sources
 
-### Canton of Zurich
+### Population of Municipalities in the Canton of Zurich 
 Dataset description: Einwohnerbestand Ende Jahr nach zivilrechtlichem Wohnsitz (ab 2010 inkl. vorläufig Aufgenommene, die seit mehr als einem Jahr in der Gemeinde leben, aber ohne Wochenaufenthalter und Asylbewerber)
 
 Get Data as csv from Canton of Zurich via API
@@ -30,7 +30,7 @@ License: Open use. Must provide the source.
 
 Source: https://opendata.swiss/de/dataset/bevolkerung-pers
 
-### City of Zurich
+### Population of the City of Zurich
 Dataset description: Wirtschaftliche Wohnbevölkerung der Stadt Zürich nach Statistischem Stadtquartier und Jahr, seit 1970. Datenqualität: 1970 – 1992 Fortschreibungsergebnisse, seit 1993 Bestand gemäss Register des Personenmeldeamtes.
 https://data.stadt-zuerich.ch/dataset/bev_bestand_jahr_quartier_seit1970_od3240/resource/570f006e-2f2a-4b1f-9233-c4916c753475
 
@@ -48,6 +48,33 @@ Attributes:
 License: Creative Commons CCZero
 
 Source: https://data.stadt-zuerich.ch/dataset/bev_bestand_jahr_quartier_seit1970_od3240
+
+### Mapping of Quarters to wikidata Entitites
+
+Dataset description: Matchingtabelle Quartiernummern zu Wikidata-ID. Diese Liste wurde am Wikimedia Hackathon 2014 in Zürich erstellt. Sie dient zur Verknüpfung zwischen statistischen Quartiernummern und den Wikidata-Item-IDs.
+
+https://data.stadt-zuerich.ch/dataset/matchingtab-quartnr-wikidataid/resource/0090f2ed-1df9-4953-9561-5d413fd74758
+
+Data Format: CSV
+
+| Technical Name  | Fiel Description   | Definition  |
+| --------------- | ------------------ | ----------- |
+| QNr             | Quartiernummer     | Offizielle ID der statistischen Quartiere    |
+| QName           | Quartiername       | Offizieller Name der statistischen Quartiere |
+| DataItemID      | DataItemID         | Offizielle ID der Statistischen Quartiere für Wikidata |
+
+License: Creative Commons CCZero
+
+Source: https://data.stadt-zuerich.ch/dataset/matchingtab-quartnr-wikidataid
+
+
+## Statistical Definition
+
+The canton uses the "ständige" and the city of zurich the "wirtschaftliche" definition to count the population.
+
+![Bevoelkerungsdefinition](https://github.com/mmznrSTAT/wikidataZH_2019/blob/master/images/bevoelkerungsdefinition.png "Bevoelkerungsdefinition")
+
+More about this definition: https://www.stadt-zuerich.ch/prd/de/index/statistik/themen/bevoelkerung/bevoelkerungsentwicklung/bevoelkerungsdefinition.html
 
 ## Wikidata Definition
 
