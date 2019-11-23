@@ -22,13 +22,19 @@ def compare_dfs_kt(df_wikidata, df_statdata):
 
     return df_statdata[(df_statdata['check'].isin(df_wikidata['check']) == False)].index.tolist()
 
-#TODO: for Gemeinde compare function
 
-def compare_kanton_mapping(df_wikidata, df_kanton):
+def compare_dfs_gm(df_wikidata, df_statdata):
 
-    logging.info('Compare: {0} stat_entries with {1} wikidate_entries'.format(df_kanton['date'].count,
+    logging.info('Compare: {0} stat_entries with {1} wikidate_entries'.format(df_statdata['date'].count,
                                                                               df_wikidata['date'].count))
-    return df_kanton[df_kanton['date'].isin(df_wikidata['date']) == True].index.tolist()
+
+    # Create the check column
+    df_statdata['check'] = df_statdata['date'].astype(str) + '---' + df_statdata['wikidata_id'].astype(str)
+    df_wikidata['check'] = df_wikidata['date'].astype(str) + '---' + df_wikidata['wikidata_id'].astype(str)
+    print("NOT IN THE DATASET")
+    print(df_statdata[(df_statdata['check'].isin(df_wikidata['check']) == False)]['date'].astype(str).str[:4].unique())
+
+    return df_statdata[(df_statdata['check'].isin(df_wikidata['check']) == False)].index.tolist()
 
 
 def main():
@@ -39,15 +45,16 @@ def main():
     # Network requests
     geoadmin = import_geoadmin_wikidata_kt()
     wikidataKT = import_wikidata_kt()
-
+    wikidataQT = import_wikidata_qt()
     # wikidata_id
     print("MERGER")
     merger = pd.merge(kantonZH, geoadmin, how='left', left_on=['BFS_NR'], right_on=['bfs']).dropna()
     print(merger.head())
     # 2. Wiki mit API Kanton
     print(compare_dfs_kt(wikidataKT, merger))
-    # 2. Wiki
 
+    # 2. Wiki
+    print(compare_dfs_gm(wikidataQT, cityZH))
 
 if __name__ == "__main__":
     main()
