@@ -10,7 +10,7 @@ Team: Katharina Kaelin, Roman Karavia, Sebastian Windeck, Philipp Rütimann, Mat
 Dataset description: Einwohnerbestand Ende Jahr nach zivilrechtlichem Wohnsitz (ab 2010 inkl. vorläufig Aufgenommene, die seit mehr als einem Jahr in der Gemeinde leben, aber ohne Wochenaufenthalter und Asylbewerber)
 
 Get Data as csv from Canton of Zurich via API
-https://www.web.statistik.zh.ch:8443/gp/GP?type=EXPORT&indikatoren=1333&raumtyp=1&text=yes
+https://www.web.statistik.zh.ch:8443/gp/GP?type=EXPORT&indikatoren=133&raumtyp=1&text=yes
 
 Data Format: JSON or CSV
 
