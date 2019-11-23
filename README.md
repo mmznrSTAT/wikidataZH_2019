@@ -90,3 +90,9 @@ Important Identifiers in Wikidata (SPARQL terminology):
 | Date (Year)    | P585          | 
 | Preferred Rank | wikibase:rank |
 
+## Limitations
+
+- Only municipalities are updated, which are currently active (source: geo.admin.ch)
+- If a wikidata entry with a date other than 31. dec exists (eg. 1.1.2017 or 2017), a new entry will be made anyway
+- For the City of Zurich only Quartiere are selected but not Kreise 
+
