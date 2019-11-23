@@ -85,6 +85,8 @@ Important Identifiers in Wikidata (SPARQL terminology):
 | Stadt Zürich   | Q72           | 
 | Population     | P1082         | 
 | Quartier       | Q19644586     | 
+| Gemeinde       | Q70208        |
+| im Kanton ZH   | Q11943        |
 | Date (Year)    | P585          | 
 | Preferred Rank | wikibase:rank |
 
