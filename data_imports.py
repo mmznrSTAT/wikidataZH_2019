@@ -42,6 +42,7 @@ def import_wikidata():
     for p in result:
         mon = {
             'wikidata_id': p['wikidata_id']['value'].replace('http://www.wikidata.org/entity/', ''),
+            'bfs_id' : p['bfs_id']['value'],
             'date': p['date']['value'],
             'population': p['population']['value'],
             'qualifier': p['qualifier']['value'].replace('http://wikiba.se/ontology#', ''),
