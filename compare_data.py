@@ -49,6 +49,7 @@ def main():
     merger = pd.merge(kantonZH, geoadmin, how='left', left_on=['BFS_NR'], right_on=['bfs'])
     print(merger.head())
     # 2. Wiki mit API Kanton
+
     # 2. Wiki
 
 
