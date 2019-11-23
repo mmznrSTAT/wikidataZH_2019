@@ -135,7 +135,7 @@ def import_geoadmin_wikidata_kt():
     :return:
     """
     endpoint_url = "https://ld.geo.admin.ch/query"
-    # TODO: Hardcoded - FILTER (?date = '2019-01-01'^^xsd:date)
+
     query = """
     PREFIX schema: <http://schema.org/>
     PREFIX gn: <http://www.geonames.org/ontology#>
@@ -153,12 +153,13 @@ def import_geoadmin_wikidata_kt():
     ?Municipality gn:population?Population .
     ?Municipality st:bfsNumber ?bfs .
     ?Municipality dct:issued ?date .
+    ?Municipality schema:validUntil ?validuntil .
     ?Municipality gn:parentADM1 ?InCanton .
     ?InCanton schema:name ?CantonName .
     #?Municipality geo:hasGeometry ?Geometry .
     #?Geometry geo:asWKT ?WKT .
     
-    FILTER (?date = '2019-01-01'^^xsd:date)
+    FILTER (now()<=?validuntil)
     FILTER (?CantonName = 'Zürich')
 
     {SELECT DISTINCT (xsd:integer(?bfsWD) AS ?bfs)?wikidata_id ?Image WHERE {
@@ -168,10 +169,7 @@ def import_geoadmin_wikidata_kt():
     ?wikidata_id wdt:P771 ?bfsWD .
     ?wikidata_id wdt:P31 wd:Q70208 .
     #OPTIONAL { ?wikidata_id wdt:P18 ?Image. } .
-    }
-    }
-    }
-    }
+    }}}}
     """
 
     def get_results(endpoint_url, query):
