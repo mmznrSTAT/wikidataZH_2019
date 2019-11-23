@@ -19,7 +19,7 @@ def import_wikidata():
         SELECT ?wikidata_id ?bfs_id ?date ?population ?qualifier
             WHERE
             {
-              
+
               ?wikidata_id wdt:P31 wd:Q70208.
               ?wikidata_id wdt:P131 wd:Q11943.
               ?wikidata_id p:P1082 ?myvalue.
@@ -30,12 +30,12 @@ def import_wikidata():
               SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
             }
         """
-    
+
     sparql = SPARQLWrapper("https://query.wikidata.org/sparql", agent = "Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36")
     sparql.setQuery(query)
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
-    
+
     result = results['results']['bindings']
 
     population = []
@@ -48,13 +48,14 @@ def import_wikidata():
             'qualifier': p['qualifier']['value'].replace('http://wikiba.se/ontology#', ''),
         }
         population.append(mon)
-    
-    
+
+
     pop = pd.DataFrame(population)
     pop['date'] = pop.date.str.slice(0, 10)
     pop['bfs_id'] = pop['bfs_id'].astype(int)
     logging.info('Import Wikidata: extracted {0} entries successful'.format(pop['date'].count()))
     return pop
+
 
 def import_KT():
     URL = "https://www.web.statistik.zh.ch:8443/gp/GP?type=EXPORT&indikatoren=133&raumtyp=1&export=csv"
@@ -66,18 +67,17 @@ def import_KT():
         print(ex)
 
     open('data/dataKt.zip', 'wb').write(r.content)
-
     zfile = zipfile.ZipFile('data/dataKt.zip')
-
-    ##for finfo in zfile.infolist():
-    ##    ifile = zfile.open(finfo)
-    ##    line_list = ifile.readlines()
-    ##    print(line_list)
-
     with zipfile.ZipFile('data/dataKt.zip', 'r') as f:
         names = f.namelist()
 
     df = pd.read_csv(zfile.open(names[0]), sep=';')
+    df = df.iloc[:, :-1]
+    df = pd.melt(df, id_vars=[df.columns[0],df.columns[1]], value_vars=df.columns[2:])
+    df = df.rename(columns={"value": "population", "variable":"date"})
+    df['date'] = df['date'].astype('str')+ '-12-31'
+
     zfile.close()
     shutil.rmtree('data')
+    logging.info('Import Kanton data: extracted {0} entries successful'.format(df['BFS_NR'].count()))
     return df
