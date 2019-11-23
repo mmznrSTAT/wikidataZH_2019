@@ -11,7 +11,8 @@ def import_wikidata():
     Generates a SPARQL query and converts this data to pandas datadframe
     :return: pd.Dataframe['wikidata_id','date','population','qualifier']
     """
-    # Q72 Zurich
+    # Q70208 Gemeinde
+    # Q11943 Kanton Zürich
     # P1082 Einwohner
     # P585 Zeitmpunkt
     query = """
