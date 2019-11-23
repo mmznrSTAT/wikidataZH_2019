@@ -101,7 +101,7 @@ def import_geoadmin_wikidata_kt():
     PREFIX dct: <http://purl.org/dc/terms/>
     PREFIX st: <https://ld.geo.admin.ch/def/>
 
-    select ?Municipality ?Name ?Population ?bfs ?date ?wikidata_id
+    select ?Municipality ?Name ?bfs ?wikidata_id
     where{
     ?Municipality gn:featureCode gn:A.ADM3 .
     ?Municipality schema:name ?Name .
@@ -141,15 +141,14 @@ def import_geoadmin_wikidata_kt():
 
     population = []
     for p in result:
-        mon = {'Municipality': p['Municipality']['value'], 'Name': p['Name']['value'],
-               'Population': p['Population']['value'], 'bfs': p['bfs']['value'], 'date': p['date']['value'],
-               'wikidata_id': p['wikidata_id']['value'],
-               'wikidata_id': p['wikidata_id']['value'].replace('http://www.wikidata.org/entity/', '')  # ,
-               # 'date': p['date']['value'],
+        mon = {'Name': p['Name']['value'],
+               'bfs': p['bfs']['value'],
+               'wikidata_id': p['wikidata_id']['value'].replace('http://www.wikidata.org/entity/', '')
                }
         population.append(mon)
 
     pop = pd.DataFrame(population)
+    pop['bfs'] = pop['bfs'].astype(int)
 
     return pop
 
