@@ -57,6 +57,51 @@ def import_wikidata_kt():
     logging.info('Import Wikidata: extracted {0} entries successful'.format(pop['date'].count()))
     return pop
 
+def import_wikidata_qt():
+    """
+    Generates a SPARQL query and converts this data to pandas datadframe
+    :return: pd.Dataframe['wikidata_id','date','population','qualifier']
+    """
+    # Q19644586 Quartier
+    # P1082 Einwohner
+    # P585 Zeitmpunkt
+    query = """
+        SELECT ?wikidata_id ?date ?population ?qualifier
+            WHERE
+            {
+
+              ?wikidata_id wdt:P31 wd:Q19644586.
+              ?wikidata_id p:P1082 ?myvalue.
+              ?myvalue pq:P585 ?date.
+              ?myvalue ps:P1082 ?population.
+              ?myvalue wikibase:rank ?qualifier.
+              SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+            }
+        """
+
+    sparql = SPARQLWrapper("https://query.wikidata.org/sparql", agent = "Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36")
+    sparql.setQuery(query)
+    sparql.setReturnFormat(JSON)
+    results = sparql.query().convert()
+
+    result = results['results']['bindings']
+
+    population = []
+    for p in result:
+        mon = {
+            'wikidata_id': p['wikidata_id']['value'].replace('http://www.wikidata.org/entity/', ''),
+            'date': p['date']['value'],
+            'population': p['population']['value'],
+            'qualifier': p['qualifier']['value'].replace('http://wikiba.se/ontology#', ''),
+        }
+        population.append(mon)
+
+
+    pop = pd.DataFrame(population)
+    pop['date'] = pop.date.str.slice(0, 10)
+    logging.info('Import Wikidata: extracted {0} entries successful'.format(pop['date'].count()))
+    return pop
+
 
 def import_kantonZH_api():
     URL = "https://www.web.statistik.zh.ch:8443/gp/GP?type=EXPORT&indikatoren=133&raumtyp=1&export=csv"
