@@ -2,7 +2,13 @@
 
 We combine challenge 4 and 6. Our goal is to update the population of in wikidata based on open statistical data by the Kanton and the City of Zurich. 
 
-Team: Katharina Kaelin, Roman Karavia, Sebastian Windeck, Philipp Rütimann, Matthias Mazenauer, Michael Grüebler
+Team: Katharina Kaelin, Roman Karavia, Sebastian Windeck, Philipp Rütimann, Matthias Mazenauer, Michael Grüebler 
+
+## Work in Progress 23.11.2019 
+
+![Dataflow](https://github.com/mmznrSTAT/wikidataZH_2019/blob/master/images/dataflow.png "Dataflow")
+
+![Kanban](https://github.com/mmznrSTAT/wikidataZH_2019/blob/master/images/kanban.png "Kanban")
 
 ## Data Sources
 
