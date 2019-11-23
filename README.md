@@ -6,9 +6,9 @@ Team: Katharina Kaelin, Roman Karavia, Sebastian Windeck, Philipp Rütimann, Mat
 
 ## Work in Progress 23.11.2019 
 
-![Dataflow](https://github.com/mmznrSTAT/wikidataZH_2019/blob/master/images/dataflow.png "Dataflow")
+![Dataflow](https://github.com/mmznrSTAT/wikidataZH_2019/blob/master/images/dataflow.jpg "Dataflow")
 
-![Kanban](https://github.com/mmznrSTAT/wikidataZH_2019/blob/master/images/kanban.png "Kanban")
+![Kanban](https://github.com/mmznrSTAT/wikidataZH_2019/blob/master/images/kanban.jpg "Kanban")
 
 ## Data Sources
 
