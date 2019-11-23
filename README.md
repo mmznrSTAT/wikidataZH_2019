@@ -88,27 +88,3 @@ Important Identifiers in Wikidata (SPARQL terminology):
 | Date (Year)    | P585          | 
 | Preferred Rank | wikibase:rank |
 
-## SPARQL Code Snippets
-
-SPARQL Query to get Municipalities of the Canton Of Zurich from swiss topo endpoint
-
-```
-PREFIX dcterms: <http://purl.org/dc/terms/>
-PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-PREFIX gn: <http://www.geonames.org/ontology#>
-PREFIX schema: <http://schema.org/>
-PREFIX dcterm: <http://purl.org/dc/terms/>
-
-SELECT ?AdminUnit  ?Name
-WHERE {
-  ?AdminUnit gn:featureCode <http://www.geonames.org/ontology#A.ADM3> .
-  ?AdminUnit schema:name ?Name .
-  ?AdminUnit gn:parentADM1 ?Canton .
-  ?Canton dcterms:issued ?Date .
-  ?Canton <https://ld.geo.admin.ch/def/bfsNumber> ?bfsNumber .
-  FILTER (?Date = "2019-01-01"^^xsd:date) .
-  FILTER (?bfsNumber = "1"^^xsd:integer) .
-}
-``
-
-
