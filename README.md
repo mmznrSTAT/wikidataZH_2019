@@ -1,10 +1,18 @@
 # Wikidata ZH Hackathon 2019
 
+[Work in progress](#work-in-progress-24112019) <br>
+[Code](#code) <br>
+[Data sources](#data-sources) <br>
+[Statistical Definitions](#statistical-definition) <br>
+[Sceenshots](#screenshots) <br>
+
+[Observable notebook with visualization of available data](https://observablehq.com/@rkaravia/municipalities-of-zurich-population-over-time)
+
 We combine challenge 4 and 6. Our goal is to update the population of in wikidata based on open statistical data by the Kanton and the City of Zurich. 
 
 Team: Katharina Kaelin, Roman Karavia, Sebastian Windeck, Philipp Rütimann, Matthias Mazenauer, Michael Grüebler 
 
-## Work in Progress 23.11.2019 
+## Work in Progress 24.11.2019 
 
 ![Dataflow](https://github.com/mmznrSTAT/wikidataZH_2019/blob/master/images/dataflow.jpg "Dataflow")
 
@@ -141,12 +149,26 @@ Important Identifiers in Wikidata (SPARQL terminology):
 | Statistik            | Q12483        |
 | Preferred Rank       | wikibase:rank |
 
-Source for Gemeinden: https://statistik.zh.ch/internet/justiz_inneres/statistik/de/daten/gemeindeportraet_kanton_zuerich.html#a-content 
-Source for Quartiere: https://data.stadt-zuerich.ch/dataset/bev_bestand_jahr_quartier_seit1970_od3240
+Source for Gemeinden:<br> https://statistik.zh.ch/internet/justiz_inneres/statistik/de/daten/gemeindeportraet_kanton_zuerich.html#a-content 
+
+Source for Quartiere:<br>
+https://data.stadt-zuerich.ch/dataset/bev_bestand_jahr_quartier_seit1970_od3240
 
 ## Limitations
 
 - Only municipalities are updated, which are currently active (source: geo.admin.ch)
 - If a wikidata entry with a date other than 31. dec exists (eg. 1.1.2017 or 2017), a new entry will be made anyway
 - For the City of Zurich only Quartiere are selected but not Kreise 
+- The bot does not yet work and the current code will delete all population data before inserting the new record
+
+## Screenshots
+
+Manual run of the bot only for the Quarter Höngg
+
+![Höngg Wikidata](https://github.com/mmznrSTAT/wikidataZH_2019/blob/master/images/result_wikidata_hoengg.png "Höngg Wikidata")
+
+![Höngg Wikipedia](https://github.com/mmznrSTAT/wikidataZH_2019/blob/master/images/result_wikipedia_hoengg.png "Höngg Wikipedia")
+
+![Höngg Siri](https://github.com/mmznrSTAT/wikidataZH_2019/blob/master/images/result_siri_hoengg.png "Höngg Siri")
+
 
