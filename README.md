@@ -88,18 +88,18 @@ More about this definition: https://www.stadt-zuerich.ch/prd/de/index/statistik/
 
 Important Identifiers in Wikidata (SPARQL terminology):
 
-| Name               | Wikidata ID   |
-| ------------------ | ------------- | 
-| Stadt Zürich       | Q72           | 
-| Population         | P1082         | 
-| Quartier           | Q19644586     | 
-| Gemeinde           | Q70208        |
-| im Kanton ZH       | Q11943        |
-| Date (Year)        | P585          |
-| URL der Fundstelle | P854          |
-| Bestimmungsmethode | P459          |
-| Statistik          | Q12483        |
-| Preferred Rank     | wikibase:rank |
+| Name                 | Wikidata ID   |
+| -------------------- | ------------- | 
+| Stadt Zürich         | Q72           | 
+| Population           | P1082         | 
+| Quartier             | Q19644586     | 
+| Gemeinde             | Q70208        |
+| im Kanton ZH         | Q11943        |
+| Date (Year)          | P585          |
+| URL der Fundstelle   | P854          |
+| Determination method | P459          |
+| Statistik            | Q12483        |
+| Preferred Rank       | wikibase:rank |
 
 Source for Gemeinden: https://statistik.zh.ch/internet/justiz_inneres/statistik/de/daten/gemeindeportraet_kanton_zuerich.html#a-content 
 Source for Quartiere: https://data.stadt-zuerich.ch/dataset/bev_bestand_jahr_quartier_seit1970_od3240
