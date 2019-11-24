@@ -9,11 +9,11 @@ from datetime import datetime
 from time import sleep
 from random import random
 
-# Quelle setzenx
-# Quartier
-#  Q4115189|P1082|805|P585|+2017-12-31T00:00:00Z/9|P459|Q12483|S854|"https://data.stadt-zuerich.ch/dataset/bev_bestand_jahr_quartier_seit1970_od3240"
 from datetime import datetime
 import copy
+
+# TODO: login for wikidate to config
+# TODO: preferred change to newest
 def create_reference():
     timeStringNow = datetime.now().strftime("+%Y-%m-%dT00:00:00Z")
     # Timestamp P585
