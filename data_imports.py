@@ -201,7 +201,8 @@ _mapping_resource_id = "0090f2ed-1df9-4953-9561-5d413fd74758"
 
 def import_cityZH_api():
     def _query_opendata_zurich(resource_id, parse_record):
-        result = requests.get(f"https://data.stadt-zuerich.ch/api/3/action/datastore_search?resource_id={resource_id}")
+        result = requests.get(
+            f"https://data.stadt-zuerich.ch/api/3/action/datastore_search?limit=1000000&resource_id={resource_id}")
         records = result.json()["result"]["records"]
         parsed_rows = []
         for record in records:
