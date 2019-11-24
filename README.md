@@ -156,4 +156,16 @@ Source for Quartiere: https://data.stadt-zuerich.ch/dataset/bev_bestand_jahr_qua
 - Only municipalities are updated, which are currently active (source: geo.admin.ch)
 - If a wikidata entry with a date other than 31. dec exists (eg. 1.1.2017 or 2017), a new entry will be made anyway
 - For the City of Zurich only Quartiere are selected but not Kreise 
+- The bot does not yet work and the current code will delete all population data before inserting the new record
+
+## Screenshots
+
+Manual run of the bot only for the Quarter Höngg
+
+![Höngg Wikidata](https://github.com/mmznrSTAT/wikidataZH_2019/blob/master/images/result_wikidata_hoengg.png "Höngg Wikidata")
+
+![Höngg Wikipedia](https://github.com/mmznrSTAT/wikidataZH_2019/blob/master/images/result_wikipedia_hoengg.png "Höngg Wikipedia")
+
+![Höngg Siri](https://github.com/mmznrSTAT/wikidataZH_2019/blob/master/images/result_siri_hoengg.png "Höngg Siri")
+
 
