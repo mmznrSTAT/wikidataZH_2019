@@ -10,7 +10,47 @@ Team: Katharina Kaelin, Roman Karavia, Sebastian Windeck, Philipp Rütimann, Mat
 
 ![Kanban](https://github.com/mmznrSTAT/wikidataZH_2019/blob/master/images/kanban.jpg "Kanban")
 
-Project Update as Jupyter Notebook Documentation: https://github.com/mmznrSTAT/wikidataZH_2019/blob/master/ProjectUpdate.ipynb
+## Code
+
+### Prerequisites
+
+You will need python 3 and pip installed on your machine.
+
+### Install
+
+Execute the steps below in a terminal.
+
+1. Create a [virtual environment](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/)
+
+```bash
+python -m venv .venv
+```
+
+2. Activate the virtual environment
+
+```bash
+source .venv/bin/activate
+```
+
+3. Install the dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### Run
+
+Run the Jupyter Notebook (work in progress)
+
+```bash
+jupyter notebook ProjectUpdate.ipynb
+```
+
+Run one of the python scripts, for example `compare_data.py`:
+
+```bash
+python compare_data.py
+```
 
 ## Data Sources
 
