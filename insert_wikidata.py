@@ -33,14 +33,13 @@ def create_qualifier(insertDate):
 
     return [refRetrieved, bestimmungsmethode]
 
-
+# TODO: improve structure of the function
 def insert_wikidate(df):#
     df = df[df['bool'] == False]
     for i, row in df.iterrows():
         print("Insert data value: {0} - {1} - {2} : {3}".format(row['wikidata_id'], row['name'], row['date'],
                                                                 row['population']))
         reference = create_reference()
-        insertDate = datetime(2017, 12, 31).strftime("+%Y-%m-%dT00:00:00Z")
         qualfier = create_qualifier(row['date'])
         statement = [
             wdi_core.WDQuantity(value=row['population'], prop_nr="P1082", references=[copy.deepcopy(reference)],
