@@ -4,7 +4,7 @@ We combine challenge 4 and 6. Our goal is to update the population of in wikidat
 
 Team: Katharina Kaelin, Roman Karavia, Sebastian Windeck, Philipp Rütimann, Matthias Mazenauer, Michael Grüebler 
 
-## Work in Progress 23.11.2019 
+## Work in Progress 24.11.2019 
 
 ![Dataflow](https://github.com/mmznrSTAT/wikidataZH_2019/blob/master/images/dataflow.jpg "Dataflow")
 
