@@ -97,6 +97,7 @@ Important Identifiers in Wikidata (SPARQL terminology):
 | im Kanton ZH       | Q11943        |
 | Date (Year)        | P585          | 
 | Bestimmungsmethode | P459          |
+| Statistik          | Q12483        |
 | Preferred Rank     | wikibase:rank |
 
 ## Limitations
