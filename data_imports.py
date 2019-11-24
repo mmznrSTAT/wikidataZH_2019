@@ -90,7 +90,7 @@ def import_wikidata_qt():
     for p in result:
         mon = {
             'wikidata_id': p['wikidata_id']['value'].replace('http://www.wikidata.org/entity/', ''),
-            'date': p['date']['value'],
+            'date': p['date']['value'].replace('-01-01', '-12-31'),
             'population': p['population']['value'],
             'qualifier': p['qualifier']['value'].replace('http://wikiba.se/ontology#', ''),
         }
