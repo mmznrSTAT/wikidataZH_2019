@@ -4,6 +4,7 @@
 [Code](#code) <br>
 [Data sources](#data-sources) <br>
 [Statistical Definitions](#statistical-definition) <br>
+[Sceenshots](#screenshots) <br>
 
 [Observable notebook with visualization of available data](https://observablehq.com/@rkaravia/municipalities-of-zurich-population-over-time)
 
@@ -148,9 +149,10 @@ Important Identifiers in Wikidata (SPARQL terminology):
 | Statistik            | Q12483        |
 | Preferred Rank       | wikibase:rank |
 
-Source for Gemeinden: https://statistik.zh.ch/internet/justiz_inneres/statistik/de/daten/gemeindeportraet_kanton_zuerich.html#a-content 
+Source for Gemeinden:<br> https://statistik.zh.ch/internet/justiz_inneres/statistik/de/daten/gemeindeportraet_kanton_zuerich.html#a-content 
 
-Source for Quartiere: https://data.stadt-zuerich.ch/dataset/bev_bestand_jahr_quartier_seit1970_od3240
+Source for Quartiere:<br>
+https://data.stadt-zuerich.ch/dataset/bev_bestand_jahr_quartier_seit1970_od3240
 
 ## Limitations
 
