@@ -1,5 +1,6 @@
 # Quelle setzen
 #  Q4115189|P1082|805|P585|+2017-12-31T00:00:00Z/9|P459|Q12483|S854|"https://data.stadt-zuerich.ch/dataset/bev_bestand_jahr_quartier_seit1970_od3240"
+from wikidataintegrator import wdi_core, wdi_login
 from datetime import datetime
 import copy
 def create_reference():
