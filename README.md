@@ -1,10 +1,11 @@
 # Wikidata ZH Hackathon 2019
 
-[Work in progress](#work-in-progress-23112019) <br>
+[Work in progress](#work-in-progress-24112019) <br>
 [Code](#code) <br>
 [Data sources](#data-sources) <br>
 [Statistical Definitions](#statistical-definition) <br>
 
+[Observable notebook with visualization of available data](https://observablehq.com/@rkaravia/municipalities-of-zurich-population-over-time)
 
 We combine challenge 4 and 6. Our goal is to update the population of in wikidata based on open statistical data by the Kanton and the City of Zurich. 
 
